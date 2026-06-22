@@ -20,9 +20,9 @@ public class BankingApp {
 			System.out.println(e.getMessage());
 		}
 		try {
-			Connection conection = DriverManager.getConnection(url, username, password);
+			Connection con = DriverManager.getConnection(url, username, password);
 			System.out.println("connected succesfully");
-			Scanner scanner = new Scanner(System.in);
+			Scanner sc = new Scanner(System.in);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
