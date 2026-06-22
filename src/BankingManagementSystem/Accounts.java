@@ -45,7 +45,22 @@ import java.util.Scanner;
 	 }
      throw new RuntimeException("Account Already Exist");
 
- } 
+ } 	
+	public long getAccount_number(String email) {
+     String query = "SELECT account_number from Accounts WHERE email = ?;";
+     try{
+         PreparedStatement ps = con.prepareStatement(query);
+         ps.setString(1, email);
+         ResultSet rs = ps.executeQuery();
+         if(rs.next()){
+             return rs.getLong("account_number");
+         }
+     }catch (SQLException e){
+         e.printStackTrace();
+     }
+     throw new RuntimeException("Account Number Doesn't Exist!");
+ }
+	  
 	
   
 	    
