@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 	public class Accounts {
@@ -60,6 +61,24 @@ import java.util.Scanner;
      }
      throw new RuntimeException("Account Number Doesn't Exist!");
  }
+	
+	private long generateAccountNumber() {
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery("SELECT account_number from Accounts ORDER BY account_number DESC LIMIT 1;");
+			if(rs.next()) {
+				long lasr_account_number = rs.getLong("account_number");
+				return last_account_number+1;
+			}else {
+				return 10000100;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return 10000100;
+	}
+	
+	
 	  
 	
   
