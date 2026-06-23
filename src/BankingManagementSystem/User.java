@@ -1,5 +1,6 @@
 package BankingManagementSystem;
 
+import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,6 +34,7 @@ public class User {
             ps.setString(1, full_name);
             ps.setString(2, email);
             ps.setString(3, password);
+            int affectedRows = ps.executeUpdate();
             if (affectedRows > 0) {
                 System.out.println("Registration Successfull!");
             } else {
