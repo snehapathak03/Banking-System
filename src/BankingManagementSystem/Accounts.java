@@ -67,7 +67,7 @@ import java.util.Scanner;
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("SELECT account_number from Accounts ORDER BY account_number DESC LIMIT 1;");
 			if(rs.next()) {
-				long lasr_account_number = rs.getLong("account_number");
+				long last_account_number = rs.getLong("account_number");
 				return last_account_number+1;
 			}else {
 				return 10000100;
@@ -78,10 +78,21 @@ import java.util.Scanner;
 		return 10000100;
 	}
 	
-	
-	  
-	
-  
-	    
+	public boolean account_exist(String email) {
+		String query = "SELECT account_number from Accounts WHERE email = ?;";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				return true;
+			}else {
+				return false;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 }
