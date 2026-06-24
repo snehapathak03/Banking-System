@@ -162,4 +162,24 @@ public class AccountManager {
         }
         con.setAutoCommit(true);
     }
+	
+	public void getBalance(long account_number) {
+		sc.nextLine();
+		System.out.println("Enter Security Pin : ");
+		String security_pin = sc.nextLine();
+		try {
+			PreparedStatement ps = con.prepareStatement("SELECT balance FROM Accounts WHERE account_number = ? AND security_pin = ?;");
+			ps.setLong(1, account_number);
+			ps.setString(2, security_pin);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				double balance = rs.getDouble("balance");
+				System.out.println("Balance : "+balance);
+			}else {
+				System.out.println("Invalid Pin......");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
+} 

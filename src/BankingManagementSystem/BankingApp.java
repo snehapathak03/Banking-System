@@ -21,8 +21,12 @@ public class BankingApp {
 		}
 		try {
 			Connection con = DriverManager.getConnection(url, username, password);
-			System.out.println("connected succesfully");
 			Scanner sc = new Scanner(System.in);
+			User user =  new User(con, sc);
+			Accounts accounts = new Accounts(con, sc);
+			AccountManager accountManager = new AccountManager(con, sc);
+			
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
