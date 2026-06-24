@@ -14,7 +14,6 @@ public class AccountManager {
 		this.sc = sc;
 	}
 	
-	
 	public void credit_money(long account_number) throws SQLException {
 		sc.nextLine();
 		System.out.print("Enter Amount: ");
@@ -164,5 +163,3 @@ public class AccountManager {
         con.setAutoCommit(true);
     }
 	}
-
-
